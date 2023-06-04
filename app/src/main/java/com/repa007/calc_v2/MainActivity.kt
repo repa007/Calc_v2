@@ -4,7 +4,6 @@ import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -17,10 +16,10 @@ import android.widget.Button
 import android.widget.HorizontalScrollView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room.databaseBuilder
 import com.repa007.calc_v2.databinding.ActivityMainBinding
 import com.sothree.slidinguppanel.PanelSlideListener
 import com.sothree.slidinguppanel.PanelState
@@ -31,6 +30,7 @@ import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormatSymbols
 import java.util.*
+
 
 var appLanguage: Locale = Locale.getDefault()
 
@@ -642,7 +642,12 @@ class MainActivity : AppCompatActivity() {
 
                             // Update history variables
                             withContext(Dispatchers.Main) {
+                                val db = databaseBuilder(
+                                    applicationContext,
+                                    AppDatabase::class.java, "database"
+                                ).build()
                                 historyAdapter.appendOneHistoryElement(
+
                                     History(
                                         calculation = calculation,
                                         result = formattedResult,
