@@ -198,9 +198,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    fun selectThemeDialog(menuItem: MenuItem) {
-        Themes.openDialogThemeSelector(this)
-    }
 
     fun clearHistory(menuItem: MenuItem) {
         // Clear preferences
