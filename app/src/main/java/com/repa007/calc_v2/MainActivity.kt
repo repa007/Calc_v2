@@ -507,19 +507,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun cosineButton(view: View) {
-        if (!isInvButtonClicked) {
-            updateDisplay(view, "cos(")
-        } else {
-            updateDisplay(view, "cos⁻¹(")
-        }
+        updateDisplay(view, "cos(")
     }
 
     fun tangentButton(view: View) {
-        if (!isInvButtonClicked) {
-            updateDisplay(view, "tan(")
-        } else {
-            updateDisplay(view, "tan⁻¹(")
-        }
+        updateDisplay(view, "tan(")
     }
 
     fun eButton(view: View) {
@@ -535,11 +527,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun logarithmButton(view: View) {
-        if (!isInvButtonClicked) {
-            updateDisplay(view, "log(")
-        } else {
-            updateDisplay(view, "10^")
-        }
+        updateDisplay(view, "log(")
     }
 
     fun piButton(view: View) {
@@ -551,11 +539,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun squareButton(view: View) {
-        if (!isInvButtonClicked) {
-            updateDisplay(view, "√")
-        } else {
-            updateDisplay(view, "^2")
-        }
+        updateDisplay(view, "√")
     }
 
     fun divideBy100(view: View) {
@@ -630,6 +614,20 @@ class MainActivity : AppCompatActivity() {
                             val currentTime = System.currentTimeMillis().toString()
 
                             // Save to history
+                            val db = databaseBuilder(
+                                applicationContext,
+                                AppDatabase::class.java, "database"
+                            ).build()
+                            var dao = db.dbHistoryDAO()
+
+                            val entry = DBHistory()
+
+                            entry.calculation = calculation
+                            entry.result = formattedResult
+                            entry.time = currentTime
+
+                            dao?.insert(entry)
+
                             history.add(
                                 History(
                                     calculation = calculation,
@@ -642,10 +640,6 @@ class MainActivity : AppCompatActivity() {
 
                             // Update history variables
                             withContext(Dispatchers.Main) {
-                                val db = databaseBuilder(
-                                    applicationContext,
-                                    AppDatabase::class.java, "database"
-                                ).build()
                                 historyAdapter.appendOneHistoryElement(
 
                                     History(
