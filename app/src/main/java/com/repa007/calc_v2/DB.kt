@@ -25,8 +25,8 @@ class DBHistory {
 
 @Dao
 interface DBHistoryDao {
-    @get:Query("SELECT * FROM dbhistory")
-    val all: List<DBHistory?>?
+    @Query("SELECT * FROM DBHistory")
+    fun getAll(): List<DBHistory>
 
     @Query("SELECT * FROM dbhistory WHERE id = :id")
     fun getById(id: Long): DBHistory?
@@ -61,3 +61,4 @@ class App : Application() {
         var instance: App? = null
     }
 }
+

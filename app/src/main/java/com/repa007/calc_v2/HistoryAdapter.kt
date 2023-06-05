@@ -36,10 +36,11 @@ class HistoryAdapter(
                 this.history.size,
                 historyList.size - 1
             )
+
         }
 
         fun appendOneHistoryElement(history: History) {
-            this.history.add(history)
+
             notifyDataSetChanged()
         }
 

@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import androidx.room.Room.databaseBuilder
 import com.repa007.calc_v2.databinding.ActivityMainBinding
 import com.sothree.slidinguppanel.PanelSlideListener
@@ -36,7 +38,6 @@ var appLanguage: Locale = Locale.getDefault()
 
 class MainActivity : AppCompatActivity() {
     private lateinit var view: View
-
     private val decimalSeparatorSymbol = DecimalFormatSymbols.getInstance().decimalSeparator.toString()
     private val groupingSeparatorSymbol = DecimalFormatSymbols.getInstance().groupingSeparator.toString()
     private var isInvButtonClicked = false
@@ -47,6 +48,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var historyAdapter: HistoryAdapter
     private lateinit var historyLayoutMgr: LinearLayoutManager
+    private lateinit var hRecyclerView: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +62,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         view = binding.root
         setContentView(view)
+
+
 
         // Disable the keyboard on display EditText
         binding.input.showSoftInputOnFocus = false
@@ -85,26 +90,26 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager.VERTICAL,
             false
         )
-        binding.historyRecylcleView.layoutManager = historyLayoutMgr
+
         historyAdapter = HistoryAdapter(mutableListOf()) {
             value -> run {
                 //val valueUpdated = value.replace(".", NumberFormatter.decimalSeparatorSymbol)
                 updateDisplay(window.decorView, value)
             }
         }
-        binding.historyRecylcleView.adapter = historyAdapter
+
         // Set values
         val historyList = MyPreferences(this).getHistory()
         historyAdapter.appendHistory(historyList)
         // Scroll to the bottom of the recycle view
         if (historyAdapter.itemCount > 0) {
-            binding.historyRecylcleView.scrollToPosition(historyAdapter.itemCount - 1)
+
         }
 
         binding.slidingLayout.addPanelSlideListener(object : PanelSlideListener {
             override fun onPanelSlide(panel: View, slideOffset: Float) {
                 if (slideOffset == 0f) { // If the panel got collapsed
-                    binding.slidingLayout.scrollableView = binding.historyRecylcleView
+
                 }
             }
             override fun onPanelStateChanged(panel: View, previousState: PanelState, newState: PanelState) {
@@ -154,6 +159,8 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+
         
         // Handle changes into input to update resultDisplay
         binding.input.addTextChangedListener(object : TextWatcher {
@@ -641,7 +648,6 @@ class MainActivity : AppCompatActivity() {
                             // Update history variables
                             withContext(Dispatchers.Main) {
                                 historyAdapter.appendOneHistoryElement(
-
                                     History(
                                         calculation = calculation,
                                         result = formattedResult,
@@ -656,7 +662,7 @@ class MainActivity : AppCompatActivity() {
                                 }
 
                                 // Scroll to the bottom of the recycle view
-                                binding.historyRecylcleView.scrollToPosition(historyAdapter.itemCount - 1)
+
                             }
                         }
                     }
