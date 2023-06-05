@@ -68,7 +68,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         val RecyclerView = findViewById<ListView>(R.id.userlist)
-        binding.RecyclerView.layoutManager = LinearLayoutManager(this)
+
+        binding.hRecylcleView.layoutManager = LinearLayoutManager(this)
 
 
         // Disable the keyboard on display EditText
