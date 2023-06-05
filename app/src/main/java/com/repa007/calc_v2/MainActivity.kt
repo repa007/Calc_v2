@@ -15,6 +15,7 @@ import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.widget.Button
 import android.widget.HorizontalScrollView
+import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -35,6 +36,8 @@ import java.text.DecimalFormatSymbols
 import java.util.*
 
 
+
+
 var appLanguage: Locale = Locale.getDefault()
 
 class MainActivity : AppCompatActivity() {
@@ -53,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val recyclerview: ListView = findViewById(R.id.userlist)
 
         // Themes
         val themes = Themes(this)
@@ -62,6 +66,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         view = binding.root
         setContentView(view)
+
+        val RecyclerView = findViewById<ListView>(R.id.userlist)
+        binding.RecyclerView.layoutManager = LinearLayoutManager(this)
 
 
         // Disable the keyboard on display EditText
