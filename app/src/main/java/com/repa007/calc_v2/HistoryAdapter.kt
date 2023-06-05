@@ -1,11 +1,12 @@
 package com.repa007.calc_v2
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class HistoryAdapter : RecyclerView.Adapter<HistoryViewHolder>(){
+class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(){
     private var historyList: List<DBHistory> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -26,4 +27,16 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryViewHolder>(){
     override fun getItemCount(): Int {
         return historyList.size
     }
+    class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val calculationTextView: TextView = itemView.findViewById(R.id.history_calculation)
+        val resultTextView: TextView = itemView.findViewById(R.id.history_result)
+        val timeTextView: TextView = itemView.findViewById(R.id.history_time)
+
+        fun bind(dbHistory: DBHistory) {
+            calculationTextView.text = dbHistory.calculation.toString()
+            resultTextView.text = dbHistory.result.toString()
+            timeTextView.text = dbHistory.time.toString()
+        }
+    }
+
 }

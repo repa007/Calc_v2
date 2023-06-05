@@ -25,29 +25,16 @@ class ScrollingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityScrollingBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_scrolling)
-
-
-        val RecyclerView = findViewById<ListView>(R.id.userlist)
+        //val RecyclerView = findViewById<ListView>(R.id.userlist!!)
         val manager = LinearLayoutManager(this) // LayoutManager
 
         val adapter: HistoryAdapter = HistoryAdapter()
-        binding.userlist.adapter = adapter
-        binding.userlist.layoutManager = manager
+        binding.userlist1.adapter = adapter
+        binding.userlist1.layoutManager = manager
 
-        val db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "my-database").build()
+        val db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "my-database").allowMainThreadQueries().build()
         val dbHistoryDao = db.dbHistoryDAO()
         val historyList = dbHistoryDao!!.getAll()
         adapter.setItems(historyList)
-    }
-}
-class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val calculationTextView: TextView = itemView.findViewById(R.id.history_calculation)
-    val resultTextView: TextView = itemView.findViewById(R.id.history_result)
-    val timeTextView: TextView = itemView.findViewById(R.id.history_time)
-
-    fun bind(dbHistory: DBHistory) {
-        calculationTextView.text = dbHistory.calculation
-        resultTextView.text = dbHistory.result.toString()
-        timeTextView.text = dbHistory.time.toString()
     }
 }

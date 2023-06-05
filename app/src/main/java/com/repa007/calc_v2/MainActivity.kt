@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val recyclerview: ListView = findViewById(R.id.userlist)
+        //val recyclerview: ListView = findViewById(R.id.userlist)
 
         // Themes
         val themes = Themes(this)
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         view = binding.root
         setContentView(view)
 
-        val RecyclerView = findViewById<ListView>(R.id.userlist)
+        //val RecyclerView = findViewById<ListView>(R.id.h_recylcle_view!!)
 
         binding.hRecylcleView.layoutManager = LinearLayoutManager(this)
 
@@ -589,7 +589,7 @@ class MainActivity : AppCompatActivity() {
                         // Save to history
                         val db = databaseBuilder(
                             applicationContext,
-                            AppDatabase::class.java, "database"
+                            AppDatabase::class.java, "my-database"
                         ).build()
                         var dao = db.dbHistoryDAO()
 
