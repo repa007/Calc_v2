@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
     private var errorStatusOld = false
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var historyAdapter: HistoryAdapter
     private lateinit var historyLayoutMgr: LinearLayoutManager
     private lateinit var hRecyclerView: RecyclerView
 
@@ -91,20 +90,11 @@ class MainActivity : AppCompatActivity() {
             false
         )
 
-        historyAdapter = HistoryAdapter(mutableListOf()) {
-            value -> run {
-                //val valueUpdated = value.replace(".", NumberFormatter.decimalSeparatorSymbol)
-                updateDisplay(window.decorView, value)
-            }
-        }
+
 
         // Set values
-        val historyList = MyPreferences(this).getHistory()
-        historyAdapter.appendHistory(historyList)
-        // Scroll to the bottom of the recycle view
-        if (historyAdapter.itemCount > 0) {
 
-        }
+
 
         binding.slidingLayout.addPanelSlideListener(object : PanelSlideListener {
             override fun onPanelSlide(panel: View, slideOffset: Float) {
@@ -206,12 +196,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun clearHistory(menuItem: MenuItem) {
-        // Clear preferences
-        MyPreferences(this@MainActivity).saveHistory(this@MainActivity, mutableListOf())
-        // Clear drawer
-        historyAdapter.clearHistory()
-    }
+
 
     private fun keyVibration(view: View) {
         if (MyPreferences(this).vibrationMode) {
@@ -588,58 +573,26 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     if (calculation != formattedResult) {
-                        val history = MyPreferences(this@MainActivity).getHistory()
+                        val history = 1
 
                         // Do not save to history if the previous entry is the same as the current one
-                        if (history.isEmpty() || history[history.size - 1].calculation != calculation) {
-                            // Store time
-                            val currentTime = System.currentTimeMillis().toString()
+                        val currentTime = System.currentTimeMillis().toString()
 
-                            // Save to history
-                            val db = databaseBuilder(
-                                applicationContext,
-                                AppDatabase::class.java, "database"
-                            ).build()
-                            var dao = db.dbHistoryDAO()
+                        // Save to history
+                        val db = databaseBuilder(
+                            applicationContext,
+                            AppDatabase::class.java, "database"
+                        ).build()
+                        var dao = db.dbHistoryDAO()
 
-                            val entry = DBHistory()
+                        val entry = DBHistory()
 
-                            entry.calculation = calculation
-                            entry.result = formattedResult
-                            entry.time = currentTime
+                        entry.calculation = calculation
+                        entry.result = formattedResult
+                        entry.time = currentTime
 
-                            dao?.insert(entry)
+                        dao?.insert(entry)
 
-                            history.add(
-                                History(
-                                    calculation = calculation,
-                                    result = formattedResult,
-                                    time = currentTime,
-                                )
-                            )
-
-                            MyPreferences(this@MainActivity).saveHistory(this@MainActivity, history)
-
-                            // Update history variables
-                            withContext(Dispatchers.Main) {
-                                historyAdapter.appendOneHistoryElement(
-                                    History(
-                                        calculation = calculation,
-                                        result = formattedResult,
-                                        time = currentTime,
-                                    )
-                                )
-
-                                // Remove former results if > historySize preference
-                                val historySize = MyPreferences(this@MainActivity).historySize!!.toInt()
-                                while (historySize > 0 && historyAdapter.itemCount >= historySize) {
-                                    historyAdapter.removeFirstHistoryElement()
-                                }
-
-                                // Scroll to the bottom of the recycle view
-
-                            }
-                        }
                     }
                     isEqualLastAction = true
                 } else {
@@ -768,18 +721,10 @@ class MainActivity : AppCompatActivity() {
         // Remove former results if > historySize preference
         // Remove from the RecycleView
         val historySize = MyPreferences(this@MainActivity).historySize!!.toInt()
-        while (historySize > 0 && historyAdapter.itemCount >= historySize) {
-            historyAdapter.removeFirstHistoryElement()
-        }
-        // Remove from the preference store data
-        val history = MyPreferences(this@MainActivity).getHistory()
-        while (historySize > 0 && history.size > historySize) {
-            history.removeAt(0)
-        }
-        MyPreferences(this@MainActivity).saveHistory(this@MainActivity, history)
 
-        // Disable the keyboard on display EditText
-        binding.input.showSoftInputOnFocus = false
+        // Remove from the preference store data
+
+
     }
 
     fun toHistory(view: View) {

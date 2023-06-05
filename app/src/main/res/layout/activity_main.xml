@@ -506,7 +506,6 @@
         android:background="#009688"
         android:backgroundTint="#009688"
         android:ellipsize="middle"
-        android:onClick="toHistory"
         android:visibility="visible"
         app:cornerRadius="200dp"
         app:icon="@android:drawable/ic_menu_recent_history"

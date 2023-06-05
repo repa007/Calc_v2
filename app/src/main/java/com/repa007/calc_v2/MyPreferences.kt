@@ -43,21 +43,5 @@ class MyPreferences(context: Context) {
     var numberPrecision = preferences.getString(KEY_NUMBER_PRECISION, "10")
         set(value) = preferences.edit().putString(KEY_NUMBER_PRECISION, value).apply()
 
-    fun getHistory(): MutableList<History> {
-        val gson = Gson()
-        return if (preferences.getString(KEY_HISTORY, null) != null) {
-            gson.fromJson(history, Array<History>::class.java).asList().toMutableList()
-        } else {
-            mutableListOf()
-        }
-    }
 
-    fun saveHistory(context: Context, history: List<History>){
-        val gson = Gson()
-        val history2 = history.toMutableList()
-        while (historySize!!.toInt() > 0 && history2.size > historySize!!.toInt()) {
-            history2.removeAt(0)
-        }
-        MyPreferences(context).history = gson.toJson(history2) // Convert to json
-    }
 }
