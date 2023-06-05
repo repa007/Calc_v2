@@ -4,6 +4,7 @@ import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -62,7 +63,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         view = binding.root
         setContentView(view)
-
 
 
         // Disable the keyboard on display EditText
@@ -521,21 +521,6 @@ class MainActivity : AppCompatActivity() {
         updateDisplay(view, "tan(")
     }
 
-    fun eButton(view: View) {
-        updateDisplay(view, "e")
-    }
-
-    fun naturalLogarithmButton(view: View) {
-        if (!isInvButtonClicked) {
-            updateDisplay(view, "ln(")
-        } else {
-            updateDisplay(view, "exp(")
-        }
-    }
-
-    fun logarithmButton(view: View) {
-        updateDisplay(view, "log(")
-    }
 
     fun piButton(view: View) {
         updateDisplay(view, "π")
@@ -547,16 +532,6 @@ class MainActivity : AppCompatActivity() {
 
     fun squareButton(view: View) {
         updateDisplay(view, "√")
-    }
-
-    fun divideBy100(view: View) {
-        addSymbol(view, "%")
-    }
-
-    @SuppressLint("SetTextI18n")
-    fun degreeButton(view: View) {
-        keyVibration(view)
-        updateResultDisplay()
     }
 
 
@@ -806,4 +781,10 @@ class MainActivity : AppCompatActivity() {
         // Disable the keyboard on display EditText
         binding.input.showSoftInputOnFocus = false
     }
+
+    fun toHistory(view: View) {
+        val historyIntent = Intent(this, ScrollingActivity::class.java)
+        startActivity(historyIntent)
+    }
+
 }
