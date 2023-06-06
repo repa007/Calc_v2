@@ -5,9 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.time.LocalDate
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(){
     private var historyList: List<DBHistory> = emptyList()
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -37,6 +40,11 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(){
             resultTextView.text = dbHistory.result.toString()
             timeTextView.text = dbHistory.time.toString()
         }
+        var str = "blabla"
+
+
     }
+
+
 
 }

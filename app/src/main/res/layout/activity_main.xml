@@ -62,7 +62,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="@+id/inputHorizontalScrollView"
         app:layout_constraintStart_toStartOf="@+id/inputHorizontalScrollView"
-        app:layout_constraintTop_toTopOf="@+id/inputHorizontalScrollView" />
+        app:layout_constraintTop_toBottomOf="@+id/inputHorizontalScrollView" />
 
     <com.sothree.slidinguppanel.SlidingUpPanelLayout
         android:id="@+id/sliding_layout"
@@ -467,14 +467,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.13" />
+        app:layout_constraintGuide_begin="95dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.18" />
 
     <View
         android:id="@+id/separator"
@@ -500,21 +500,23 @@
 
     <Button
         android:id="@+id/HistoryButton"
-        style="@style/CalculatorButton.Small"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="#009688"
-        android:backgroundTint="#009688"
-        android:ellipsize="middle"
+        style="@style/CalculatorButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:background="#8F009688"
+        android:backgroundTint="@color/button_clear_color"
         android:onClick="toHistory"
+        android:textAlignment="center"
         android:visibility="visible"
-        app:cornerRadius="200dp"
-        app:icon="@android:drawable/ic_menu_recent_history"
-        app:iconSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:icon="@drawable/history"
+        app:iconSize="80dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:strokeColor="#9C27B0"
-        app:strokeWidth="1dp" />
+        app:srcCompat="@drawable/divide" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

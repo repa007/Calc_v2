@@ -1,5 +1,6 @@
 package com.repa007.calc_v2
 
+
 import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.content.ClipData
@@ -33,6 +34,9 @@ import kotlinx.coroutines.withContext
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormatSymbols
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.LocalTime
+//import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -584,7 +588,8 @@ class MainActivity : AppCompatActivity() {
                         val history = 1
 
                         // Do not save to history if the previous entry is the same as the current one
-                        val currentTime = System.currentTimeMillis().toString()
+                        var currentTime = Calendar.getInstance().time.toString()
+
 
                         // Save to history
                         val db = databaseBuilder(

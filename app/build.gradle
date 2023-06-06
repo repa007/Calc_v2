@@ -5,6 +5,15 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 33
 
+    compileOptions {
+        // Flag to enable support for the new language APIs
+        coreLibraryDesugaringEnabled = true // <- this flag is required
+
+        // Sets Java compatibility to Java 8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.repa007.calc_v2"
         resConfigs 'ar', 'az', 'bn', 'bs', 'de', 'el', 'es', 'fa', 'fr', 'hi', 'hr', 'in', 'it', 'ja', 'mk', 'nb-rNO', 'pt-rBR', 'ru', 'tr', 'uk', 'vi', 'zh-rHK', 'zh-rTW'
@@ -69,5 +78,7 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-jdbc:0.38.1")
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
 }
 

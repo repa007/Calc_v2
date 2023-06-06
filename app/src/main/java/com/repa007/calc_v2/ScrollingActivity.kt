@@ -23,18 +23,22 @@ class ScrollingActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityScrollingBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_scrolling)
-        //val RecyclerView = findViewById<ListView>(R.id.userlist!!)
+        //setContentView(R.layout.activity_scrolling)
+        setContentView(binding.root)
+        //val RecyclerView = findViewById<ListView>(R.id.userlist1!!)
         val manager = LinearLayoutManager(this) // LayoutManager
 
         val adapter: HistoryAdapter = HistoryAdapter()
         binding.userlist1.adapter = adapter
         binding.userlist1.layoutManager = manager
 
+
         val db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "my-database").allowMainThreadQueries().build()
         val dbHistoryDao = db.dbHistoryDAO()
         val historyList = dbHistoryDao!!.getAll()
         adapter.setItems(historyList)
+
     }
 }
