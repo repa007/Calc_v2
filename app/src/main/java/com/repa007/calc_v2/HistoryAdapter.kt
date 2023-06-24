@@ -44,7 +44,4 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>(){
 
 
     }
-
-
-
 }
