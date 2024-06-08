@@ -1,10 +1,12 @@
 package com.repa007.calc_v2
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -21,24 +23,20 @@ class ScrollingActivity : AppCompatActivity() {
     private lateinit var historyLayoutMgr: LinearLayoutManager
     private lateinit var hRecyclerView: RecyclerView
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityScrollingBinding.inflate(layoutInflater)
-        //setContentView(R.layout.activity_scrolling)
         setContentView(binding.root)
-        //val RecyclerView = findViewById<ListView>(R.id.userlist1!!)
-        val manager = LinearLayoutManager(this) // LayoutManager
-
-        val adapter: HistoryAdapter = HistoryAdapter()
-        binding.userlist1.adapter = adapter
-        binding.userlist1.layoutManager = manager
-
 
         val db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "my-database").allowMainThreadQueries().build()
         val dbHistoryDao = db.dbHistoryDAO()
         val historyList = dbHistoryDao!!.getAll()
-        adapter.setItems(historyList)
 
+        // Создаем и устанавливаем адаптер для RecyclerView
+        val adapter = HistoryAdapter()
+        binding.userlist1.adapter = adapter
+        binding.userlist1.layoutManager = LinearLayoutManager(this)
+        adapter.setItems(historyList)
     }
 }

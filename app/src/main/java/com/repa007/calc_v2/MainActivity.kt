@@ -73,7 +73,6 @@ class MainActivity : AppCompatActivity() {
 
         //val RecyclerView = findViewById<ListView>(R.id.h_recylcle_view!!)
 
-        binding.hRecylcleView.layoutManager = LinearLayoutManager(this)
 
 
         // Disable the keyboard on display EditText
@@ -86,11 +85,7 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
-        // Set default animations and disable the fade out default animation
-        // https://stackoverflow.com/questions/19943466/android-animatelayoutchanges-true-what-can-i-do-if-the-fade-out-effect-is-un
-        val lt = LayoutTransition()
-        lt.disableTransitionType(LayoutTransition.DISAPPEARING)
-        binding.tableLayout.layoutTransition = lt
+
 
         // Set decimalSeparator
         binding.pointButton.setImageResource(if (decimalSeparatorSymbol == ",") R.drawable.comma else R.drawable.dot)
@@ -108,18 +103,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        binding.slidingLayout.addPanelSlideListener(object : PanelSlideListener {
-            override fun onPanelSlide(panel: View, slideOffset: Float) {
-                if (slideOffset == 0f) { // If the panel got collapsed
 
-                }
-            }
-            override fun onPanelStateChanged(panel: View, previousState: PanelState, newState: PanelState) {
-                if (newState == PanelState.ANCHORED){ // To prevent the panel from getting stuck in the middle
-                    binding.slidingLayout.panelState = PanelState.EXPANDED
-                }
-            }
-        })
 
         // Prevent the phone from sleeping (if option enabled)
         if (MyPreferences(this).preventPhoneFromSleepingMode) {
@@ -245,7 +229,6 @@ class MainActivity : AppCompatActivity() {
                     binding.input.setText("")
             } else {
                 binding.input.setSelection(binding.input.text.length)
-                binding.inputHorizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
             }
             isEqualLastAction = false
         }

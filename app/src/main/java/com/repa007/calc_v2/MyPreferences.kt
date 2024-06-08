@@ -9,13 +9,12 @@ class MyPreferences(context: Context) {
 
     // https://proandroiddev.com/dark-mode-on-android-app-with-kotlin-dc759fc5f0e1
     companion object {
-        private const val THEME = "repa007.opencalculator.THEME"
-        private const val FORCE_DAY_NIGHT = "repa007.opencalculator.FORCE_DAY_NIGHT"
-
-        private const val KEY_VIBRATION_STATUS = "repa007.opencalculator.KEY_VIBRATION_STATUS"
-        private const val KEY_PREVENT_PHONE_FROM_SLEEPING = "repa007.opencalculator.PREVENT_PHONE_FROM_SLEEPING"
-        private const val KEY_HISTORY_SIZE = "repa007.opencalculator.HISTORY_SIZE"
-        private const val KEY_NUMBER_PRECISION = "repa007.opencalculator.NUMBER_PRECISION"
+        private const val THEME = "repa007.calc_v2.THEME"
+        private const val FORCE_DAY_NIGHT = "repa007.calc_v2.FORCE_DAY_NIGHT"
+        private const val KEY_VIBRATION_STATUS = "repa007.calc_v2.KEY_VIBRATION_STATUS"
+        private const val KEY_PREVENT_PHONE_FROM_SLEEPING = "repa007.calc_v2.PREVENT_PHONE_FROM_SLEEPING"
+        private const val KEY_HISTORY_SIZE = "repa007.calc_v2.HISTORY_SIZE"
+        private const val KEY_NUMBER_PRECISION = "repa007.calc_v2.NUMBER_PRECISION"
     }
 
     private val preferences = PreferenceManager.getDefaultSharedPreferences(context)
