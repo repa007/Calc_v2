@@ -52,7 +52,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    namespace 'com.repa007.calc_v2'
+    namespace 'com.repa007.GreatCalculator'
 
 }
 
