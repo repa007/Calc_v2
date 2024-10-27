@@ -1,4 +1,4 @@
-package com.repa007.calc_v2
+package com.repa007.GreatCalculator
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

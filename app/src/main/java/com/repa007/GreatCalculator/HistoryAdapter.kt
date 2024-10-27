@@ -1,4 +1,4 @@
-package com.repa007.calc_v2
+package com.repa007.GreatCalculator
 
 import android.icu.text.SimpleDateFormat
 import android.os.Build
@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.sql.Date
 import java.util.Locale
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {

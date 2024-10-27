@@ -1,21 +1,13 @@
-package com.repa007.calc_v2
+package com.repa007.GreatCalculator
 
 import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.ListView
-import android.widget.TextView
 import androidx.annotation.RequiresApi
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
-import com.repa007.calc_v2.databinding.ActivityMainBinding
-import com.repa007.calc_v2.databinding.ActivityScrollingBinding
+import com.repa007.GreatCalculator.databinding.ActivityScrollingBinding
 
 class ScrollingActivity : AppCompatActivity() {
 

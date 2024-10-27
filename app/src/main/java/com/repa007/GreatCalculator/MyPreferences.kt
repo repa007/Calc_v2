@@ -1,9 +1,8 @@
-package com.repa007.calc_v2
+package com.repa007.GreatCalculator
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.preference.PreferenceManager
-import com.google.gson.Gson
 
 class MyPreferences(context: Context) {
 

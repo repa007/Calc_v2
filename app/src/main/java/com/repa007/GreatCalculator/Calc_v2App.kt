@@ -1,9 +1,9 @@
-package com.repa007.calc_v2
+package com.repa007.GreatCalculator
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate.*
 
-class Calc_v2App : Application() {
+class GreatCalculator : Application() {
 
     override fun onCreate() {
         super.onCreate()

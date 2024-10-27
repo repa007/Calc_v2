@@ -1,4 +1,4 @@
-package com.repa007.calc_v2
+package com.repa007.GreatCalculator
 
 import android.app.Activity
 import android.content.Context

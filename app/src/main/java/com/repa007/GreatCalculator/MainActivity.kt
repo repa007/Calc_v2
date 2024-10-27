@@ -1,7 +1,6 @@
-package com.repa007.calc_v2
+package com.repa007.GreatCalculator
 
 
-import android.animation.LayoutTransition
 import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -11,31 +10,23 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.HapticFeedbackConstants
-import android.view.MenuItem
 import android.view.View
 import android.view.accessibility.AccessibilityEvent
 import android.widget.Button
-import android.widget.HorizontalScrollView
-import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import androidx.room.Room.databaseBuilder
-import com.repa007.calc_v2.databinding.ActivityMainBinding
-import com.sothree.slidinguppanel.PanelSlideListener
-import com.sothree.slidinguppanel.PanelState
+import com.repa007.GreatCalculator.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.DecimalFormatSymbols
-import org.threeten.bp.LocalDateTime;
-import org.threeten.bp.LocalTime
 //import java.time.format.DateTimeFormatter
 import java.util.*
 
