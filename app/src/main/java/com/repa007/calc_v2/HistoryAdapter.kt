@@ -18,6 +18,8 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
     // Добавляем новое поле для хранения группированных данных
     private var groupedHistoryList: List<Pair<String, List<DBHistory>>> = emptyList()
 
+    
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return HistoryViewHolder(view)
